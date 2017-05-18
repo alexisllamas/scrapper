@@ -13,7 +13,7 @@ const scrapp = (url) => {
           .get(el.attribs.href)
           .end((err, res) => {
             const $ = cheerio.load(res.text);
-            const products = $('li.grid-tile').filter('.product-tile').toArray();
+            const products = $('li.grid-tile').toArray();
             products.forEach((li) => {
               console.log(li)
             })
