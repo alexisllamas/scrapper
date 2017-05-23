@@ -43,7 +43,12 @@ const scrap = (url) => {
             stars: product.find('.pr_stars .stars-inner').html() ? product.find('.pr_stars .stars-inner').css('width') : '',
             mrrp: product.find('.product-pricing .mrrp').text(),
             price: product.find('.product-pricing .product-sales-price').text(),
-            colors: product.find('.product-colorswatches-list .swatch.productlink').toArray().map(el => el.attribs.title),
+            colors: product.find('.product-colorswatches-list .swatch.productlink').toArray().map(el => {
+            	return {
+            		title: el.attribs.title,
+            		background: $(el).find('span').first().css('background-image')
+            	}
+            }),
             greatValue: product.find('.badge.badge-pricebuster').length > 0,
             productPromo: product.find('.product-promo').text(),
 
